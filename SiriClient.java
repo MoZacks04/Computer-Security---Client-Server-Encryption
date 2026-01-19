@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
-public class Client {
+public class SiriClient {
     public static void main(String[] args) {
         String host = "localhost";
         int port = 5000;
@@ -18,7 +18,7 @@ public class Client {
                 System.out.print("\nYou: ");
                 String plainQuestion = sc.nextLine();
 
-                String encryptedQuestion = Vigenere.encrypt(plainQuestion);
+                String encryptedQuestion = VigenereCipher.encrypt(plainQuestion);
                 System.out.println("[SEND ENCRYPTED] " + encryptedQuestion);
 
                 out.println(encryptedQuestion);
@@ -31,7 +31,7 @@ public class Client {
 
                 System.out.println("[RECV ENCRYPTED] " + encryptedAnswer);
 
-                String decryptedAnswer = Vigenere.decrypt(encryptedAnswer);
+                String decryptedAnswer = VigenereCipher.decrypt(encryptedAnswer);
                 System.out.println("[RECV DECRYPTED] " + decryptedAnswer);
 
                 if (plainQuestion.trim().equalsIgnoreCase("bye") ||
