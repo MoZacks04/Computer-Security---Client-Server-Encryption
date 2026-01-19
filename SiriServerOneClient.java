@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Server {
+public class SiriServerOneClient {
     private static final AtomicInteger CLIENT_ID = new AtomicInteger(1);
 
     private static String siriReply(String msg) {
@@ -52,11 +52,11 @@ public class Server {
                 while ((encryptedQuestion = in.readLine()) != null) {
                     System.out.println("\n[#"+id+" RECV ENCRYPTED] " + encryptedQuestion);
 
-                    String decryptedQuestion = Vigenere.decrypt(encryptedQuestion);
+                    String decryptedQuestion = VigenereCipher.decrypt(encryptedQuestion);
                     System.out.println("[#"+id+" RECV DECRYPTED] " + decryptedQuestion);
 
                     String replyPlain = siriReply(decryptedQuestion);
-                    String replyEncrypted = Vigenere.encrypt(replyPlain);
+                    String replyEncrypted = VigenereCipher.encrypt(replyPlain);
 
                     System.out.println("[#"+id+" SEND PLAIN]     " + replyPlain);
                     System.out.println("[#"+id+" SEND ENCRYPTED] " + replyEncrypted);
